@@ -5,6 +5,8 @@ import bts.sio.azurimmo.service.AppartementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/appartements")
@@ -17,6 +19,11 @@ public class AppartementController {
     @PostMapping("/")
     public Appartement createAppartement(@RequestBody Appartement appartement) {
         return appartementService.saveAppartement(appartement);
+    }
+
+    @GetMapping("/ville/{ville}")
+    public List<Appartement> getByVille(@PathVariable String ville) {
+        return appartementService.findByVille(ville);
     }
 
 }
